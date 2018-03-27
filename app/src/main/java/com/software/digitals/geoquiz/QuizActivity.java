@@ -9,20 +9,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class QuizActivity extends AppCompatActivity {
 
     @BindView(R.id.true_button)
-    private Button mTrueButton;
+    Button mTrueButton;
 
     @BindView(R.id.false_button)
-    private Button mFalseButton;
+    Button mFalseButton;
 
     @BindView(R.id.next_button)
-    private Button mNextButton;
+    Button mNextButton;
 
     @BindView(R.id.question_text_view)
-    private TextView mQuestionTextView;
+    TextView mQuestionTextView;
 
     private Question[] mQuestionBank = new Question[]{
             new Question(R.string.question_austrialia, true),
@@ -39,7 +40,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
+        ButterKnife.bind(this);
         // initialize references to buttons
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
