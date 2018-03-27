@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,10 @@ public class QuizActivity extends AppCompatActivity {
     Button mFalseButton;
 
     @BindView(R.id.next_button)
-    Button mNextButton;
+    ImageButton mNextButton;
+
+    @BindView(R.id.previous_button)
+    ImageButton mPreviousButton;
 
     @BindView(R.id.question_text_view)
     TextView mQuestionTextView;
@@ -60,6 +64,18 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                updateQuestion();
+            }
+        });
+
+        mPreviousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mCurrentIndex == 0) {
+                    mCurrentIndex = mQuestionBank.length - 1;
+                } else {
+                    mCurrentIndex -= 1;
+                }
                 updateQuestion();
             }
         });
